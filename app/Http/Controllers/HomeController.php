@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Repositories\UserRepository ;
 
 /**
  * Class HomeController
@@ -21,10 +22,16 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+
+    private $userRepository;
+
+
+    public function __construct(UserRepository $user)
     {
         $this->middleware('auth');
+        $this->userRepository = $user;
     }
+
 
     /**
      * Show the application dashboard.
@@ -33,6 +40,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('adminlte::home');
+        $users = $this->userRepository->all();
+        return view('adminlte::home', array('users' => $users));
     }
 }
