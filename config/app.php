@@ -186,6 +186,11 @@ return [
          */
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
 
+        /*
+         * Laravel 5 IDE Helper Generator
+         */
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+
     ],
 
     /*
