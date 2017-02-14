@@ -8,6 +8,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository ;
 
@@ -24,12 +25,14 @@ class HomeController extends Controller
      */
 
     private $userRepository;
+    private $postRepository;
 
 
-    public function __construct(UserRepository $user)
+    public function __construct(UserRepository $user, PostRepository $post)
     {
         $this->middleware('auth');
         $this->userRepository = $user;
+        $this->postRepository = $post;
     }
 
 
@@ -41,6 +44,7 @@ class HomeController extends Controller
     public function index()
     {
         $users = $this->userRepository->all();
-        return view('adminlte::home', array('users' => $users));
+        $posts = $this->postRepository->all();
+        return view('adminlte::home', array('users' => $users, 'posts' => $posts));
     }
 }

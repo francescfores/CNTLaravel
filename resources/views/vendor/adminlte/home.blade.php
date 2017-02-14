@@ -36,16 +36,16 @@
 				<!-- Default box -->
 				<div class="box">
 					<div class="box-header with-border">
-						<h3 class="box-title">Users</h3>
+						<h3 class="box-title">Posts </h3>
 
 						<div class="box-tools pull-right">
 
 						</div>
 					</div>
 					{{--{{ trans('adminlte_lang::message.logged') }}. Start creating your amazing application!--}}
-					@foreach ($users as $user)
+					@foreach ($posts as $post)
 						<div class="box-body">
-							<li>{{ $user->name }}</li>
+							<li>{{ $post->name }}</li>
 						</div>
 						@endforeach
 								<!-- /.box-body -->
