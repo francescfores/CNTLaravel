@@ -29,8 +29,8 @@ class DatabaseSeeder extends Seeder
                 'id' => $user_id,
                 'name' => $faker->name,
                 'email' => $faker->email,
-                //'password' => bcrypt('secret'),
-                'password' => "Password"
+                'password' => bcrypt('secret'),
+//                'password' => "Password"
             ]);
 
             DB::table('news')->insert([
