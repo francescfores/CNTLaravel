@@ -27,7 +27,7 @@ class UserController extends Controller
     {
         //$users = User::All();
         $users = $this->userRepository->all();
-        return view('users.index', array('users' => $users));
+        return view('layouts.users', array('users' => $users));
     }
 
     /**

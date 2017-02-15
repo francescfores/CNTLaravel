@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Repositories\PostRepository ;
 
 class PostController extends Controller
 {
@@ -17,7 +18,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = $this->postRepository->all();
-        return view('posts.index', array('posts' => $posts));
+        return view('layouts.posts', array('posts' => $posts));
     }
 
     /**

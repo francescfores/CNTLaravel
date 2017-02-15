@@ -191,6 +191,11 @@ return [
          */
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
+        /*
+         * Laravel 5 Debugbar
+         */
+        Barryvdh\Debugbar\ServiceProvider::class,
+
     ],
 
     /*
@@ -243,6 +248,11 @@ return [
         * Acacha AdminLTE template alias
         */
         'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
+        /*
+        * Laravel 5 Debugbar
+        */
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
     ],
 
 ];
