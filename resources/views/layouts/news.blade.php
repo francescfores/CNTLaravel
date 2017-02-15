@@ -17,9 +17,9 @@
                         </div>
                     </div>
                     {{--{{ trans('adminlte_lang::message.logged') }}. Start creating your amazing application!--}}
-                    @foreach ($posts as $post)
+                    @foreach ($news as $new)
                         <div class="box-body">
-                            <li>{{ $post->name }}</li>
+                            <li>{{ $new->name }}</li>
                         </div>
                         @endforeach
                                 <!-- /.box-body -->

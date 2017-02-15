@@ -11,9 +11,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('users')->insert([
+//                'uuid' => $user_id,
+            'id' => 1,
+            'name' => 'Test',
+            'email' => "admin@gmail.com",
+            'password' => bcrypt('admin'),
+//            'password' => "admin"
+        ]);
         // $this->call(UsersTableSeeder::class);
         $faker = Faker::create();
-        foreach (range(1,20) as $index) {
+        foreach (range(1,50) as $index) {
             $user_id = $faker->unique()->randomNumber();
             //$user_id = Uuid::generate(1);
             DB::table('users')->insert([
@@ -25,7 +33,7 @@ class DatabaseSeeder extends Seeder
                 'password' => "Password"
             ]);
 
-            DB::table('posts')->insert([
+            DB::table('news')->insert([
                 'id' => $faker->unique()->randomNumber(),
                 'name' => $faker->name,
                 'title' => $faker->email,

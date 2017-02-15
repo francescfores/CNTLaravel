@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostsTable extends Migration
+class CreateNewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('news', function (Blueprint $table) {
             $table->increments('id', true);
             //$table->uuid('user_uuid');
             $table->string('name');
@@ -27,25 +27,15 @@ class CreatePostsTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users');
         });
-
-
-//        Schema::table('posts', function($table) {
-//            $table->foreign('user_uuid')
-//                //->references('uuid')->on('users')
-//                ->references('id')->on('users')
-//                ->onDelete('cascade');
-//        });
-
     }
 
     /**
      * Reverse the migrations.
      *
-     * @return void        DB::statement('ALTER TABLE post ADD user_uuid BINARY(16) NOT NULL AFTER id;');
-
+     * @return void
      */
     public function down()
     {
-//        Schema::dropIfExists('posts');
+        //
     }
 }

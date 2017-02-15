@@ -13,7 +13,7 @@
 				<div class="small-box bg-aqua">
 					<div class="inner">
 						<h3>
-							{{count($posts)}}
+							{{count($news)}}
 						</h3>
 						<p>
 							News

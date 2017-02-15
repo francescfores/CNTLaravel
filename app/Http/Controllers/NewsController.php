@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\NewsRepository;
 use Illuminate\Http\Request;
-use App\Repositories\PostRepository ;
 
-class PostController extends Controller
+class NewsController extends Controller
 {
-    private $postRepository;
+    private $newsRepository;
 
-    public function __construct(PostRepository $posts) {
+    public function __construct(NewsRepository $news) {
 
-        $this->postRepository = $posts;
+        $this->newsRepository = $news;
     }
 
 
     public function index()
     {
-        $posts = $this->postRepository->all();
-        return view('layouts.posts', array('posts' => $posts));
+        $news = $this->newsRepository->all();
+        return view('layouts.news', array('news' => $news));
     }
 
     /**
@@ -49,10 +49,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //$user = User::find($id);
-        $user = $this->userRepository->find($id);
-        //var_dump($user);
-        return view('users.show', array('user' => $user));
+
     }
 
     /**

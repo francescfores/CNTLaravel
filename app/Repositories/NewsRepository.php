@@ -11,10 +11,10 @@ namespace App\Repositories;
 use Prettus\Repository\Eloquent\BaseRepository;
 
 
-class PostRepository extends BaseRepository {
+class NewsRepository extends BaseRepository {
 
     function model()
     {
-        return "App\\Post";
+        return "App\\News";
     }
 }

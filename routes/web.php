@@ -20,7 +20,7 @@ Route::group(['middleware' => 'auth'], function () {
     #adminlte_routes
 
     Route::resource('users', 'UserController');
-    Route::get('posts','PostController@index');
+    Route::get('news','NewsController@index');
 
 //Route::get('user/{id}', function ($id) {
 //    return 'User '.$id;
