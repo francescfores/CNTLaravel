@@ -13,7 +13,18 @@ class CreateFilesTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('files', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 10);
+            $table->integer('size')->unsigned();
+            $table->string('real_name', 255);
+            $table->string('extension', 10);
+            $table->string('mime', 15);
+            $table->timestamps();
+            $table->softDeletes();
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+        });
     }
 
     /**

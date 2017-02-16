@@ -36,7 +36,7 @@
 
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    {!! Form::open(['route' => 'users.store','method' => 'post']) !!}
+                    {!! Form::open(['route' => 'users.store','method' => 'post','files' => true]) !!}
 
                     @include('users.create')
                     <div class="box-footer">

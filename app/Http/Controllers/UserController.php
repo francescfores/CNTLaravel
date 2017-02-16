@@ -55,11 +55,11 @@ class UserController extends Controller
             'email' => 'required|unique:users',
             'password' => 'required',
             'name' => 'required',
-            'lastname' => 'required',
-            'date' => 'required',
-            'sex' => 'required',
-            'rol' => 'required',
-            'status' => 'required',
+//            'lastname' => 'required',
+//            'date' => 'required',
+//            'sex' => 'required',
+//            'rol' => 'required',
+//            'status' => 'required',
         ]);
 
         if($validator->fails()){
