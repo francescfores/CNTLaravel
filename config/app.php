@@ -200,6 +200,10 @@ return [
          * Forms & HTML
          */
         Collective\Html\HtmlServiceProvider::class,
+        /*
+         * Intervention Image
+         */
+        Intervention\Image\ImageServiceProvider::class
 
     ],
 
@@ -262,6 +266,11 @@ return [
          */
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        /*
+         * Intervention Image
+         */
+        'Image' => Intervention\Image\Facades\Image::class
+
     ],
 
 ];
