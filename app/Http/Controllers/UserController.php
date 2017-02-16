@@ -56,18 +56,22 @@ class UserController extends Controller
             'password' => 'required',
             'name' => 'required',
             'lastname' => 'required',
+            'date' => 'required',
+            'sex' => 'required',
+            'rol' => 'required',
+            'status' => 'required',
         ]);
+
         $msg = $validator;
 
         if($validator->fails()){
             $users = $this->userRepository->all();
             return view('layouts.users', array('users' => $users))
             ->withErrors($msg);
-//                ->withInput('esdsdsdsdsdsdsd');
         }
 
         $user = $this->userRepository->create($request->all());
-        //$request->session()->flash('alert-danger', 'User was successful added!');
+        $request->session()->flash('alert-success', 'User was successful added!');
         return $this->index();
     }
 
