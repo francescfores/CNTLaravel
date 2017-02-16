@@ -73,15 +73,22 @@ class UserController extends Controller
         }
 
         $user = Auth::id();
+
         $file = new File();
-        $file->name = $request->file('photo')->getFilename();
+        $file->name = $file->user_id .'_'. $request->file('photo')->getClientOriginalName();
         $file->size = $request->file('photo')->getSize();
         $file->real_name = $request->file('photo')->getRealPath();
         $file->extension = $request->file('photo')->getClientOriginalExtension();
         $file->mime = $request->file('photo')->getClientMimeType();
         $file->user_id = $user;
 
-        var_dump($file->attributesToArray());
+
+        $request->file('photo')->move(
+            base_path() . '/public/', $file->name
+        );
+
+//        return \Redirect::route('admin.products.edit',
+//            array($product->id))->with('message', 'Product added!');
 
         $this->userRepository->create($request->input());
         $this->fileRepository->create($file->attributesToArray());

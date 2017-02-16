@@ -13,6 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('files');
         Schema::dropIfExists('news');
         Schema::dropIfExists('posts');
         Schema::dropIfExists('users');
