@@ -62,15 +62,12 @@ class UserController extends Controller
             'status' => 'required',
         ]);
 
-        $msg = $validator;
-
         if($validator->fails()){
             $users = $this->userRepository->all();
             return view('layouts.users', array('users' => $users))
-            ->withErrors($msg);
+            ->withErrors($validator);
         }
 
-        $user = $this->userRepository->create($request->all());
         $request->session()->flash('alert-success', 'User was successful added!');
         return $this->index();
     }

@@ -21,9 +21,14 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             //$table->uuid('uuid');
-            $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('name');
+            $table->date('date');
+            $table->enum('sex', array('Male', 'Female'));
+            $table->enum('rol', array('admin', 'subadmin', 'user'));
+            $table->enum('status', array('Master', 'Federated', 'Schooler'));
+            $table->enum('category', array('Benjamín', 'Alevín', 'Infantil'));
             $table->rememberToken();
             //$table->primary('uuid');
 

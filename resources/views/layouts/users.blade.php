@@ -17,7 +17,7 @@
                 <div class="box box-primary">
                     <div class="box-header">
                         {{--Method 1--}}
-                        @if (count($errors) > 0)
+                    @if (count($errors) > 0)
                             <div class="alert alert-danger">
                                 <ul>
                                     @foreach ($errors->all() as $error)
