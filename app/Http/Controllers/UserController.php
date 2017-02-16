@@ -2,21 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\File;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Prettus\Repository\Eloquent\BaseRepository;
 use App\Repositories\UserRepository ;
+use App\Repositories\FileRepository;
 
 
 class UserController extends Controller
 {
     private $userRepository;
 
-    public function __construct(UserRepository $user) {
+    public function __construct(UserRepository $user,FileRepository $file) {
 
         $this->userRepository = $user;
+        $this->fileRepository = $file;
     }
 
     /**
@@ -55,7 +59,7 @@ class UserController extends Controller
             'email' => 'required|unique:users',
             'password' => 'required',
             'name' => 'required',
-//            'lastname' => 'required',
+            'lastname' => 'required',
 //            'date' => 'required',
 //            'sex' => 'required',
 //            'rol' => 'required',
@@ -68,6 +72,19 @@ class UserController extends Controller
             ->withErrors($validator);
         }
 
+        $user = Auth::id();
+        $file = new File();
+        $file->name = $request->file('photo')->getFilename();
+        $file->size = $request->file('photo')->getSize();
+        $file->real_name = $request->file('photo')->getRealPath();
+        $file->extension = $request->file('photo')->getClientOriginalExtension();
+        $file->mime = $request->file('photo')->getClientMimeType();
+        $file->user_id = $user;
+
+        var_dump($file->attributesToArray());
+
+        $this->userRepository->create($request->input());
+        $this->fileRepository->create($file->attributesToArray());
         $request->session()->flash('alert-success', 'User was successful added!');
         return $this->index();
     }
