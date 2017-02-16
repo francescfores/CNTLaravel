@@ -196,6 +196,11 @@ return [
          */
         Barryvdh\Debugbar\ServiceProvider::class,
 
+        /*
+         * Forms & HTML
+         */
+        Collective\Html\HtmlServiceProvider::class,
+
     ],
 
     /*
@@ -252,7 +257,11 @@ return [
         * Laravel 5 Debugbar
         */
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
-
+        /*
+         * Forms & HTML
+         */
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];

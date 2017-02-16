@@ -16,59 +16,35 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header">
+                        {{--Method 1--}}
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        {{--//Method 2--}}
+                            {{--@foreach (['danger', 'warning', 'success', 'info'] as $msg)--}}
+                                {{--@if(Session::has('alert-' . $msg))--}}
+                                    {{--<p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>--}}
+                                {{--@endif--}}
+                            {{--@endforeach--}}
                         <h3 class="box-title">Add User</h3>
+
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form">
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputFile">File input</label>
-                                        <input type="file" id="exampleInputFile">
-                                        <p class="help-block">Example block-level help text here.</p>
-                                    </div>
-                                    {{--<div class="checkbox">--}}
-                                    {{--<label class="">--}}
-                                    {{--<div class="icheckbox_minimal" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Check me out--}}
-                                    {{--</label>--}}
-                                    {{--</div>--}}
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Name</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Your name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Last Name</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Last name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Date</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Last name">
-                                    </div>
-                                    {{--<div class="checkbox">--}}
-                                    {{--<label class="">--}}
-                                    {{--<div class="icheckbox_minimal" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Check me out--}}
-                                    {{--</label>--}}
-                                    {{--</div>--}}
-                                </div>
-                            </div>
+                    {!! Form::open(['route' => 'users.store','method' => 'post']) !!}
 
-                        </div><!-- /.box-body -->
+                    @include('users.create')
+                    <div class="box-footer">
+                        {!! Form::button('Reset', ['type' => 'reset','class' => 'btn btn-default']) !!}
+                        {!! Form::button('Submit', ['type' => 'submit','class' => 'btn btn-primary']) !!}
+                    </div>
+                    {!! Form::close() !!}
 
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
                 </div><!-- /.box -->
 
             </div><!--/.col (left) -->
