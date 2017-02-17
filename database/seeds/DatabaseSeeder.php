@@ -17,12 +17,13 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test',
             'email' => "admin@gmail.com",
             'password' => bcrypt('admin'),
+            'img' => 'Image',
 //            'password' => "admin"
         ]);
 
         // $this->call(UsersTableSeeder::class);
         $faker = Faker::create();
-        foreach (range(1,50) as $index) {
+        foreach (range(1,5) as $index) {
             $user_id = $faker->unique()->randomNumber();
             //$user_id = Uuid::generate(1);
             DB::table('users')->insert([
@@ -31,6 +32,7 @@ class DatabaseSeeder extends Seeder
                 'name' => $faker->name,
                 'email' => $faker->email,
                 'password' => bcrypt('secret'),
+                'img' => 'Image',
 //                'password' => "Password"
             ]);
 
@@ -41,7 +43,6 @@ class DatabaseSeeder extends Seeder
                 'comment' => 'Comment',
 //                'user_uuid' => $user_id,
                 'user_id' => $user_id,
-
             ]);
 
 //            $faker = Faker::create();

@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 use Prettus\Repository\Eloquent\BaseRepository;
 use App\Repositories\UserRepository ;
@@ -30,7 +31,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //$users = User::All();
+        $user = Auth::user();
         $users = $this->userRepository->all();
         return view('layouts.users', array('users' => $users));
     }
@@ -59,7 +60,7 @@ class UserController extends Controller
             'email' => 'required|unique:users',
             'password' => 'required',
             'name' => 'required',
-            'lastname' => 'required',
+//            'lastname' => 'required',
 //            'date' => 'required',
 //            'sex' => 'required',
 //            'rol' => 'required',
@@ -72,29 +73,21 @@ class UserController extends Controller
             ->withErrors($validator);
         }
 
-        $user = Auth::id();
+        $user_input = $request->all();
 
-        $file = new File();
-        $file->name = $file->user_id .'_'. $request->file('photo')->getClientOriginalName();
-        $file->size = $request->file('photo')->getSize();
-        $file->real_name = $request->file('photo')->getRealPath();
-        $file->extension = $request->file('photo')->getClientOriginalExtension();
-        $file->mime = $request->file('photo')->getClientMimeType();
-        $file->user_id = $user;
+        if($request->file('img')) {
+            $user_input['img'] = URL::to('/') . '/public/user_img' . $user_input['email'] . '_' . $request->file('img')->getClientOriginalName();
 
+            $request->file('img')->move(
+                base_path() . '/public/user_img', $user_input['email'] . '_' . $request->file('img')->getClientOriginalName()
+            );
+        }
 
-        $request->file('photo')->move(
-            base_path() . '/public/', $file->name
-        );
-
-//        return \Redirect::route('admin.products.edit',
-//            array($product->id))->with('message', 'Product added!');
-
-        $this->userRepository->create($request->input());
-        $this->fileRepository->create($file->attributesToArray());
+        $this->userRepository->create($user_input);
         $request->session()->flash('alert-success', 'User was successful added!');
         return $this->index();
     }
+
 
     /**
      * Display the specified resource.

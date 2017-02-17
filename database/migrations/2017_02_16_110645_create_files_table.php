@@ -20,6 +20,7 @@ class CreateFilesTable extends Migration
             $table->string('real_name', 255);
             $table->string('extension', 10);
             $table->string('mime', 15);
+            $table->string('url');
             $table->timestamps();
             $table->softDeletes();
             $table->integer('user_id')->unsigned();

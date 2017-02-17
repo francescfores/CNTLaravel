@@ -21,4 +21,5 @@ class UserRepository extends BaseRepository {
     {
         return "App\\User";
     }
+
 }
